@@ -1,35 +1,9 @@
-# ir
+# 靜宜大學
+# 資料科學暨大數據分析與應用學系
 
-This template should help get you started developing with Vue 3 in Vite.
+## 深度學習在太陽光電模組的熱影像缺陷自動識別系統
 
-## Recommended IDE Setup
+---
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+### 指導老師：黃秋杰 郭珈妤
+### 組員：張偉政 楊迪奇 王教勛 陳峻浩 王泊諺 張湧毅 馬浩洋
