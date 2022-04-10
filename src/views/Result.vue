@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <div class="b">
+    <div class="block">
+      <div class="sel">
       <el-select v-model="value1" placeholder="選擇圖片" @change="clearphoto">
         <el-option
           v-for="item in options1"
@@ -9,171 +10,201 @@
           :value="item.value"
         ></el-option>
       </el-select>
-      <br />
-      <br />
-      <br />
-      <br />
+      </div>
+
       <div class="back">
         <img :src="img" alt />
       </div>
     </div>
-    <div class="b">
-      <div class="aaa">
+
+    <div class="block">
+      <div class="sel">
         <el-select v-model="value2" placeholder="選擇模型" @change="clearphoto">
           <el-option
             v-for="item in options2"
             :key="item.value"
             :label="item.label"
             :value="item.value"
+            :disabled="item.disabled"
           ></el-option>
         </el-select>
-        <div>
-          <el-radio v-model="radio3" label="1">彩色</el-radio>
-          <el-radio v-model="radio3" label="2">黑白</el-radio>
-        </div>
-        <div>
-          <el-radio v-model="radio4" label="1">50</el-radio>
-          <el-radio v-model="radio4" label="2">100</el-radio>
+        <div class="radio">
+          
+          <el-radio v-model="radio1" label="200" size="large">200</el-radio>
+          <el-radio v-model="radio1" label="300" size="large">300</el-radio>
         </div>
       </div>
 
       <div class="back">
-        <img :src="asd" alt />
+        <img :src="resultImg" alt />
       </div>
     </div>
-    <button @click="as" class="result-but">查看結果</button>
+
+    <button
+      @click="result"
+      class="result-but"
+      v-loading.fullscreen.lock="fullscreenLoading"
+      element-loading-text="running"
+      element-loading-background="rgba(100, 100, 100, 0.4)"
+    >查看結果</button>
   </div>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue';
 
+const fullscreenLoading = ref(false);
+
 const options1 = ref([
   {
-    value: '选项1',
-    label: '圖片一',
-    img: 'https://upload.cc/i1/2021/12/05/qDIQc9.png',
+    value: 'Image1',
+    label: 'Image1',
+    img: 'https://upload.cc/i1/2022/04/10/SVd9ku.png',
     reimg: {
-      img1: 'https://upload.cc/i1/2021/12/05/KlmJos.png',
-      img2: '圖片一模型二',
+      img1_200: 'https://upload.cc/i1/2022/04/10/7rYuH1.png',
+      img1_300: 'https://upload.cc/i1/2022/04/10/yiJfVG.png',
+      img2_200: '圖片一模型二',
+      img2_300: '圖片一模型二',
     }
   },
   {
-    value: '选项2',
-    label: '圖片二',
-    img: 'https://upload.cc/i1/2021/12/08/LumTMJ.png',
+    value: 'Image2',
+    label: 'Image2',
+    img: 'https://upload.cc/i1/2022/04/10/wN3Mzc.png',
     reimg: {
-      img1: 'https://upload.cc/i1/2021/12/08/4DVZz3.png',
-      img2: '圖片二模型二',
+      img1_200: 'https://upload.cc/i1/2022/04/10/3HJuE5.png',
+      img1_300: 'https://upload.cc/i1/2022/04/10/JNgzY1.png',
+      img2_200: '圖片二模型二',
+      img2_300: '圖片一模型二',
     }
   },
   {
-    value: '选项3',
-    label: '圖片三',
-    img: 'https://upload.cc/i1/2021/12/08/wdTUm7.png',
+    value: 'Image3',
+    label: 'Image3',
+    img: 'https://upload.cc/i1/2022/04/10/Yy2AQq.png',
     reimg: {
-      img1: 'https://upload.cc/i1/2021/12/08/SHK50G.png',
-      img2: '圖片三模型二',
+      img1_200: 'https://upload.cc/i1/2022/04/10/iRubId.png',
+      img1_300: 'https://upload.cc/i1/2022/04/10/HPzXY9.png',
+      img2_200: '圖片三模型二',
+      img2_300: '圖片一模型二',
     }
   },
   {
-    value: '选项4',
-    label: '圖片四',
-    img: 'https://upload.cc/i1/2021/12/08/dvjPWG.png',
+    value: 'Image4',
+    label: 'Image4',
+    img: 'https://upload.cc/i1/2022/04/10/tw2o13.png',
     reimg: {
-      img1: 'https://upload.cc/i1/2021/12/08/rjqT0b.png',
-      img2: '圖片四模型二',
+      img1_200: 'https://upload.cc/i1/2022/04/10/t7HWUF.png',
+      img1_300: 'https://upload.cc/i1/2022/04/10/d9mAea.png',
+      img2_200: '圖片四模型二',
+      img2_300: '圖片一模型二',
     }
   },
   {
-    value: '选项5',
-    label: '圖片五',
-    img: 'https://upload.cc/i1/2021/12/08/Xro9kN.png',
+    value: 'Image5',
+    label: 'Image5',
+    img: 'https://upload.cc/i1/2022/04/10/mSiAMv.png',
     reimg: {
-      img1: 'https://upload.cc/i1/2021/12/08/FSiba7.png',
-      img2: '圖片五模型二',
+      img1_200: 'https://upload.cc/i1/2022/04/10/1lxirc.png',
+      img1_300: 'https://upload.cc/i1/2022/04/10/ZJht5j.png',
+      img2_200: '圖片五模型二',
+      img2_300: '圖片一模型二',
     }
   },
   {
-    value: '选项6',
-    label: '圖片六',
-    img: 'https://upload.cc/i1/2021/12/08/9UP3wl.png',
+    value: 'Image6',
+    label: 'Image6',
+    img: 'https://upload.cc/i1/2022/04/10/0mgEvA.png',
     reimg: {
-      img1: 'https://upload.cc/i1/2021/12/08/PTMf2p.png',
-      img2: '圖片六模型二',
+      img1_200: 'https://upload.cc/i1/2022/04/10/Wfpu5k.png',
+      img1_300: 'https://upload.cc/i1/2022/04/10/cQizKV.png',
+      img2_200: '圖片六模型二',
+      img2_300: '圖片一模型二',
     }
   },
   {
-    value: '选项7',
-    label: '圖片七',
-    img: 'https://upload.cc/i1/2021/12/08/mNHfg0.png',
+    value: 'Image7',
+    label: 'Image7',
+    img: 'https://upload.cc/i1/2022/04/10/Xaqpfs.png',
     reimg: {
-      img1: 'https://upload.cc/i1/2021/12/08/dxIc0W.png',
-      img2: '圖片七模型二',
+      img1_200: 'https://upload.cc/i1/2022/04/10/evq7Md.png',
+      img1_300: 'https://upload.cc/i1/2022/04/10/tmf4V5.png',
+      img2_200: '圖片七模型二',
+      img2_300: '圖片一模型二',
     }
   },
   {
-    value: '选项8',
-    label: '圖片八',
-    img: 'https://upload.cc/i1/2021/12/08/WPGgNX.png',
+    value: 'Image8',
+    label: 'Image8',
+    img: 'https://upload.cc/i1/2022/04/10/NdB6Sv.png',
     reimg: {
-      img1: 'https://upload.cc/i1/2021/12/08/JsVGdq.png',
-      img2: '圖片八模型二',
+      img1_200: 'https://upload.cc/i1/2022/04/10/TvYwJk.png',
+      img1_300: 'https://upload.cc/i1/2022/04/10/2Fy3fq.png',
+      img2_200: '圖片八模型二',
+      img2_300: '圖片一模型二',
     }
   },
   {
-    value: '选项9',
-    label: '圖片九',
-    img: 'https://upload.cc/i1/2021/12/08/nuOLih.png',
+    value: 'Image9',
+    label: 'Image9',
+    img: 'https://upload.cc/i1/2022/04/10/WEdnrY.png',
     reimg: {
-      img1: 'https://upload.cc/i1/2021/12/08/zu4Gad.png',
-      img2: '圖片九模型二',
+      img1_200: 'https://upload.cc/i1/2022/04/10/JuMS38.png',
+      img1_300: 'https://upload.cc/i1/2022/04/10/tPCf1o.png',
+      img2_200: '圖片九模型二',
+      img2_300: '圖片一模型二',
     }
   },
   {
-    value: '选项10',
-    label: '圖片十',
-    img: 'https://upload.cc/i1/2021/12/08/cVvtAU.png',
+    value: 'Image10',
+    label: 'Image10',
+    img: 'https://upload.cc/i1/2022/04/10/cEFXHM.png',
+    img: 'https://upload.cc/i1/2022/04/10/cEFXHM.png',
     reimg: {
-      img1: 'https://upload.cc/i1/2021/12/08/QnePCM.png',
-      img2: '圖片十模型二',
+      img1_200: 'https://upload.cc/i1/2022/04/10/nCxpuj.png',
+      img1_300: 'https://upload.cc/i1/2022/04/10/ebJ3mN.png',
+      img2_200: '圖片十模型二',
+      img2_300: '圖片一模型二',
     }
   },
 ])
-const value1 = ref("选项1")
+const value1 = ref("Image1")
 
 const options2 = ref([
   {
     value: 'img1',
-    label: '模型一',
+    label: 'U-Net',
   },
   {
     value: 'img2',
-    label: '模型二',
+    label: 'SegNet',
+    disabled: true,
   },
   {
     value: 'img3',
     label: '模型三',
+    disabled: true,
   },
 ])
 const value2 = ref("img1")
 
 const a = ref("")
-const radio1 = ref("1")
-const radio2 = ref("1")
-const radio3 = ref("1")
-const radio4 = ref("1")
+const radio1 = ref("200")
 
 const img = computed(() => {
   return options1.value[options1.value.map(x => x.value).indexOf(value1.value)].img
 })
 
-const asd = computed(() => {
+const resultImg = computed(() => {
   return a.value
 })
 
-const as = () => {
-  a.value = options1.value[options1.value.map(x => x.value).indexOf(value1.value)].reimg[value2.value]
+const result = () => {
+  fullscreenLoading.value = true
+  setTimeout(() => {
+    fullscreenLoading.value = false
+    a.value = options1.value[options1.value.map(x => x.value).indexOf(value1.value)].reimg[value2.value+'_'+radio1.value]
+  }, 3000)
 }
 
 const clearphoto = () => {
@@ -190,7 +221,7 @@ const clearphoto = () => {
 .el-select {
   width: 150px;
 }
-.b {
+.block {
   width: 50%;
   height: 70%;
   position: relative;
@@ -200,25 +231,19 @@ const clearphoto = () => {
   flex-direction: column;
   margin-top: 50px;
 }
-.b:nth-child(1) {
-  padding-left: 10%;
-}
-.b:nth-child(2) {
-  padding-right: 10%;
-}
 .back {
-  width: 60%;
+  width: 90%;
   height: 80%;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 5px;
+  border-radius: 8px;
   margin-top: 30px;
   background: rgba(133, 133, 133, 0.205);
 }
 .back img {
-  width: 90%;
+  width: 85%;
 }
 
 .result-but {
@@ -227,37 +252,42 @@ const clearphoto = () => {
   font-size: 1.2em;
   position: relative;
   border-radius: 10px;
+  transition: all 0.3s;
+}
+.result-but:hover {
+  background: #92abb6;
 }
 
-
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .container {
-    height: 150vh;
+    height: auto;
     display: flex;
     align-items: center;
     flex-direction: column;
   }
-  .b {
+  .block {
     width: 100%;
-    height: 400px;
+    height: 500px;
     margin-top: 50px;
   }
-  .b:nth-child(1) {
-    padding-left: 0;
-  }
-  .b:nth-child(2) {
-    padding-right: 0;
-  }
   .back {
-  width: 70%;
-  height: 80%;
-  margin-top: 0;
+    width: 70%;
+    height: 80%;
+  }
+  .back img {
+    width: 90%;
+  }
+  .result-but {
+    margin: 40px 0;
+  }
 }
-.back img {
-  width: 90%;
+.sel{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: 40px;
 }
-.result-but {
-  margin-top: 30px;
-}
+.radio{
+  margin-left: 20px;
 }
 </style>

@@ -5,6 +5,7 @@
   /* position: relative; */
   /* font-weight: normal; */
   font-family: "DFKai-SB";
+  --el-loading-fullscreen-spinner-size: 120px !important;
 }
 
 body {
@@ -14,7 +15,11 @@ body {
   position: relative;
 }
 
-@media (max-width: 600px) {
+.el-loading-spinner .el-loading-text{
+  font-size: 40px !important;
+}
+
+@media (max-width: 800px) {
   body {
     overflow: auto;
   }

@@ -139,7 +139,7 @@ const p1img = computed(()=>{
   color: #fff;
   display: grid;
   place-items: center;
-  font-size: 0.9em;
+  font-size: 0.7em;
   transform: rotate(45deg);
   cursor: pointer;
   transition: all .5s ease 0s;

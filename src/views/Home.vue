@@ -22,8 +22,8 @@
 .aa {
   position: relative;
   width: 65vw;
-  top: 7%;
   text-align: left;
+  padding-top: 7%;
 }
 .sch {
   font-size: 4rem;
