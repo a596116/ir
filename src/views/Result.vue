@@ -29,7 +29,6 @@
           ></el-option>
         </el-select>
         <div class="radio">
-          
           <el-radio v-model="radio1" label="200" size="large">200</el-radio>
           <el-radio v-model="radio1" label="300" size="large">300</el-radio>
         </div>
@@ -182,7 +181,7 @@ const options2 = ref([
   },
   {
     value: 'img3',
-    label: '模型三',
+    label: 'FCN',
     disabled: true,
   },
 ])
@@ -233,7 +232,7 @@ const clearphoto = () => {
 }
 .back {
   width: 90%;
-  height: 80%;
+  height: 90%;
   position: relative;
   display: flex;
   justify-content: center;
@@ -243,7 +242,7 @@ const clearphoto = () => {
   background: rgba(133, 133, 133, 0.205);
 }
 .back img {
-  width: 85%;
+  width: 80%;
 }
 
 .result-but {
