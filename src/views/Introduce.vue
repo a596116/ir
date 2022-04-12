@@ -26,13 +26,27 @@
       </swiper-slide>
       <swiper-slide>
         <div class="a">
+          <h1 class="title">研究背景</h1>
+          <p class="txt">
+            <span style="color:#cc0000">‧環境的影響</span>
+            <br />&emsp;&emsp;<span style="color:#cc0000">燃煤</span>被認定是<span style="color:#cc0000">造成全球暖化和酸雨</span>
+            的主要原因也間接<span style="color:#cc0000">導致許多動植物數量減少甚至走向滅絕</span>，
+            農產品也包含其中。而隨著海平面持續上升的問題，也將會影響我們的人類的生存範圍。<span style="color:#cc0000">核廢料的存處問題</span>
+            至今仍然是無法解決，各國政府也只能將核廢料進行存放。
+            <br />
+            <span style="color:#cc0000">‧臺灣</span>
+            <br />&emsp;&emsp;臺灣的能源主要以進口為最大占比，其中主要的有石油、天然氣、煤礦等。近年來政府為了響應全球環境議題，開始推動<span style="color:#cc0000">
+            綠色產業</span>，在再生能源方面<span style="color:#cc0000">太陽光發電</span>也在這幾年中有顯著的成長。
+          </p>
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <div class="a">
           <h1 class="title">研究動機</h1>
           <p class="txt">
-            太陽光電模組本身需要受到太陽直射來產生能量，因此增加了許多內、外部組件損壞的機率，為了能更快速的了解太陽光電模組的損壞程度，本組透過
-            <span style="color:#cc0000">深度學習</span>的方式以
-            <span style="color:#cc0000">無人機</span>拍攝後的
-            <span style="color:#cc0000">熱層圖像</span>直接分析所壞的部件，提高產能，也能
-            <span style="color:#cc0000">省去許多的人力、時間的消耗</span>。
+            「熱斑效應」對於太陽光電模組來說是一種不可避免的問題，形成的原因有些是太陽光電模組「本身」品質就存在缺陷、
+            也有些是因「環境」所造成局部遮蔽而形成的。本組打算透過<span style="color:#cc0000">無人機</span>拍攝的<span style="color:#cc0000">熱層像圖</span>
+            搭配<span style="color:#cc0000">深度學習</span>的方式，有效率的找太陽光電模組中出現熱斑的位置，降低整體營運成本，提高人們建置太陽光電模組的意願。
           </p>
         </div>
       </swiper-slide>
@@ -42,8 +56,8 @@
           <p class="txt">
             在本次專題中，我們將採用一台裝有
             <span style="color:#cc0000">IR鏡頭與可見光鏡頭</span>的無人機來拍攝太陽光電模組的現場情況，並將拍攝下來的影像快速傳回到電腦後，利用
-            <span style="color:#cc0000">U-Net、SegNet</span>擷取影像特徵點，將
-            <span style="color:#cc0000">IR熱影像圖</span>與一般影像圖進行辨識比對，最終找出太陽光電模組的故障位置。
+            <span style="color:#cc0000">U-Net、SegNet、FCN</span>擷取影像特徵點，將
+            <span style="color:#cc0000">IR熱影像圖</span>與一般影像圖進行辨識比對，最終找出太陽光電模組中熱斑的位置。
           </p>
         </div>
       </swiper-slide>
@@ -91,7 +105,7 @@ SwiperCore.use([Navigation, Pagination, EffectFlip]);
 }
 .a {
   width: 85%;
-  height: 85%;
+  height: 100%;
   overflow: auto;
 }
 .title {

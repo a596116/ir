@@ -203,7 +203,7 @@ const result = () => {
   setTimeout(() => {
     fullscreenLoading.value = false
     a.value = options1.value[options1.value.map(x => x.value).indexOf(value1.value)].reimg[value2.value+'_'+radio1.value]
-  }, 3000)
+  }, Math.floor(Math.random()*(1500))+1000)
 }
 
 const clearphoto = () => {

@@ -3,47 +3,36 @@
     <div class="line">|</div>
     <el-tabs v-model="active" style="width: 100%;">
       <el-tab-pane label="模型" name="page1" class="tabs1">
-        <div class="page1-content">
-          <div class="page1">
-            <div class="page1_c1">
-              <div
-                class="p1button"
-                :class="{ buttonhover: activepage1 == 'page1_1' }"
-                @click="activepage1 = 'page1_1'"
-              >
-                <span>FCN</span>
-              </div>
-              <div
-                class="p1button"
-                :class="{ buttonhover: activepage1 == 'page1_2' }"
-                @click="activepage1 = 'page1_2'"
-              >
-                <span>Seg</span>
-              </div>
-              <div
-                class="p1button"
-                :class="{ buttonhover: activepage1 == 'page1_3' }"
-                @click="activepage1 = 'page1_3'"
-              >
-                <span>U-Net</span>
-              </div>
-            </div>
-
-            <div class="page1_c2">
-              <el-popover
-                placement="bottom"
-                title
-                :width="400"
-                trigger="click"
-                :content="p1content"
-              >
-                <template #reference>
-                  <el-button>介紹</el-button>
-                </template>
-              </el-popover>
-            </div>
+        <br />
+        <div class="page1">
+          <div
+            class="p1button"
+            :class="{ buttonhover: activepage1 == 'page1_1' }"
+            @click="activepage1 = 'page1_1'"
+          >
+            <span>FCN</span>
           </div>
-
+          <div
+            class="p1button"
+            :class="{ buttonhover: activepage1 == 'page1_2' }"
+            @click="activepage1 = 'page1_2'"
+          >
+            <span>Seg</span>
+          </div>
+          <div
+            class="p1button"
+            :class="{ buttonhover: activepage1 == 'page1_3' }"
+            @click="activepage1 = 'page1_3'"
+          >
+            <span>U-Net</span>
+          </div>
+        </div>
+        <div class="page1-content">
+          <el-popover placement="bottom" title :width="400" trigger="click" :content="p1content">
+            <template #reference>
+              <el-button>介紹</el-button>
+            </template>
+          </el-popover>
           <img :src="p1img" />
         </div>
       </el-tab-pane>
@@ -51,9 +40,9 @@
         <br />
         <el-tabs v-model="activepage2">
           <el-tab-pane label="原始資料" name="page2_1">利用空拍機，拍攝太陽光電模組的熱影像圖，蒐集資料</el-tab-pane>
-          <el-tab-pane label="處理資料" name="page2_2">將無人機收集的資料透過Labelm標記，再將圖片轉為灰階和縮小並且正規化</el-tab-pane>
-          <el-tab-pane label="拆分資料集" name="page2_3">將資料集的95%作為訓練集，剩餘的5%作為測試集</el-tab-pane>
-          <el-tab-pane label="訓練模型" name="page2_4">使用深度學習的方式建立(U-Net、SegNet)模型架構進行訓練</el-tab-pane>
+          <el-tab-pane label="處理資料" name="page2_2">將圖片轉為灰階之後再左右對切，將總數變為2倍，對圖片進行正規化</el-tab-pane>
+          <el-tab-pane label="拆分資料集" name="page2_3">將資料集裡的95%作為訓練集，剩餘的5%做為測試集</el-tab-pane>
+          <el-tab-pane label="訓練模型" name="page2_4">使用深度學習的方式建立(U-NET、SegNet)模型架構進行訓練</el-tab-pane>
           <el-tab-pane label="測試" name="page2_5">使用訓練好的模型對測試集進行預測</el-tab-pane>
           <el-tab-pane label="結果" name="page2_6">標示出太陽光電模組異常的區塊</el-tab-pane>
         </el-tabs>
@@ -85,7 +74,8 @@ const p1img = computed(() => {
 
 <style>
 .process {
-  width: 90vw;
+  width: 70vw;
+  position: relative;
 }
 .line {
   font-size: 40px;
@@ -133,41 +123,40 @@ const p1img = computed(() => {
   width: 100%;
   height: 100%;
   position: relative;
+  display: flex;
 }
 .page1 {
-  position: relative;
-  width: 100%;
-  display: inline-flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.page1_c1 {
-  position: relative;
-  display: inline-flex;
-  flex-direction: row;
+  width: 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 #pane-page1 .p1button {
   width: 80px;
-  height: 40px;
-  margin: 0 20px 0 0;
+  height: 80px;
+  margin: 60px 0 0 0;
   border: 1px solid #fff;
   color: #fff;
   display: grid;
   place-items: center;
   font-size: 0.7em;
+  transform: rotate(45deg);
   cursor: pointer;
   transition: all 0.5s ease 0s;
 }
 #pane-page1 .p1button span {
+  transform: rotate(-45deg);
   transition: all 0.5s ease 0s;
 }
 #pane-page1 .p1button:hover,
 #pane-page1 .buttonhover {
   background: rgba(255, 255, 255, 0.582);
+  transform: rotate(0deg);
   color: rgb(66, 62, 62);
 }
 #pane-page1 .p1button:hover span,
 #pane-page1 .buttonhover span {
+  transform: rotate(0deg);
   font-weight: bold;
 }
 
@@ -195,8 +184,20 @@ const p1img = computed(() => {
 }
 
 @media (max-width: 600px) {
+  #pane-page1 {
+    display: flex;
+    flex-direction: column;
+  }
+  #pane-page1 .page1 {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
   #pane-page1 .p1button {
-    margin: 0 10px 0 0;
+    margin: 0 40px 20px 20px;
+  }
+  .page1-content .el-button {
+    margin: 20px 0;
   }
   .page1-content {
     width: 100%;

@@ -108,13 +108,12 @@
 
         <el-main>
           <router-view v-slot="{ Component, route }">
-            <transition :name="route.meta.transition" appear>
+            <transition name="fade" appear mode="out-in">
               <keep-alive exclude="detail">
                 <component :is="Component" />
               </keep-alive>
             </transition>
           </router-view>
-          <!-- <router-view></router-view> -->
         </el-main>
       </el-container>
     </el-container>
