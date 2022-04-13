@@ -4,7 +4,7 @@
       <div class="sel">
       <el-select v-model="value1" placeholder="選擇圖片" @change="clearphoto">
         <el-option
-          v-for="item in options1"
+          v-for="item in ir.resultData"
           :key="item.value"
           :label="item.label"
           :value="item.value"
@@ -51,122 +51,11 @@
 
 <script setup>
 import { ref, computed } from 'vue';
+import { useIrStore } from "@/stores/ir.js";
+const ir = useIrStore();
 
 const fullscreenLoading = ref(false);
 
-const options1 = ref([
-  {
-    value: 'Image1',
-    label: 'Image1',
-    img: 'https://upload.cc/i1/2022/04/10/SVd9ku.png',
-    reimg: {
-      img1_200: 'https://upload.cc/i1/2022/04/10/7rYuH1.png',
-      img1_300: 'https://upload.cc/i1/2022/04/10/yiJfVG.png',
-      img2_200: '圖片一模型二',
-      img2_300: '圖片一模型二',
-    }
-  },
-  {
-    value: 'Image2',
-    label: 'Image2',
-    img: 'https://upload.cc/i1/2022/04/10/wN3Mzc.png',
-    reimg: {
-      img1_200: 'https://upload.cc/i1/2022/04/10/3HJuE5.png',
-      img1_300: 'https://upload.cc/i1/2022/04/10/JNgzY1.png',
-      img2_200: '圖片二模型二',
-      img2_300: '圖片一模型二',
-    }
-  },
-  {
-    value: 'Image3',
-    label: 'Image3',
-    img: 'https://upload.cc/i1/2022/04/10/Yy2AQq.png',
-    reimg: {
-      img1_200: 'https://upload.cc/i1/2022/04/10/iRubId.png',
-      img1_300: 'https://upload.cc/i1/2022/04/10/HPzXY9.png',
-      img2_200: '圖片三模型二',
-      img2_300: '圖片一模型二',
-    }
-  },
-  {
-    value: 'Image4',
-    label: 'Image4',
-    img: 'https://upload.cc/i1/2022/04/10/tw2o13.png',
-    reimg: {
-      img1_200: 'https://upload.cc/i1/2022/04/10/t7HWUF.png',
-      img1_300: 'https://upload.cc/i1/2022/04/10/d9mAea.png',
-      img2_200: '圖片四模型二',
-      img2_300: '圖片一模型二',
-    }
-  },
-  {
-    value: 'Image5',
-    label: 'Image5',
-    img: 'https://upload.cc/i1/2022/04/10/mSiAMv.png',
-    reimg: {
-      img1_200: 'https://upload.cc/i1/2022/04/10/1lxirc.png',
-      img1_300: 'https://upload.cc/i1/2022/04/10/ZJht5j.png',
-      img2_200: '圖片五模型二',
-      img2_300: '圖片一模型二',
-    }
-  },
-  {
-    value: 'Image6',
-    label: 'Image6',
-    img: 'https://upload.cc/i1/2022/04/10/0mgEvA.png',
-    reimg: {
-      img1_200: 'https://upload.cc/i1/2022/04/10/Wfpu5k.png',
-      img1_300: 'https://upload.cc/i1/2022/04/10/cQizKV.png',
-      img2_200: '圖片六模型二',
-      img2_300: '圖片一模型二',
-    }
-  },
-  {
-    value: 'Image7',
-    label: 'Image7',
-    img: 'https://upload.cc/i1/2022/04/10/Xaqpfs.png',
-    reimg: {
-      img1_200: 'https://upload.cc/i1/2022/04/10/evq7Md.png',
-      img1_300: 'https://upload.cc/i1/2022/04/10/tmf4V5.png',
-      img2_200: '圖片七模型二',
-      img2_300: '圖片一模型二',
-    }
-  },
-  {
-    value: 'Image8',
-    label: 'Image8',
-    img: 'https://upload.cc/i1/2022/04/10/NdB6Sv.png',
-    reimg: {
-      img1_200: 'https://upload.cc/i1/2022/04/10/TvYwJk.png',
-      img1_300: 'https://upload.cc/i1/2022/04/10/2Fy3fq.png',
-      img2_200: '圖片八模型二',
-      img2_300: '圖片一模型二',
-    }
-  },
-  {
-    value: 'Image9',
-    label: 'Image9',
-    img: 'https://upload.cc/i1/2022/04/10/WEdnrY.png',
-    reimg: {
-      img1_200: 'https://upload.cc/i1/2022/04/10/JuMS38.png',
-      img1_300: 'https://upload.cc/i1/2022/04/10/tPCf1o.png',
-      img2_200: '圖片九模型二',
-      img2_300: '圖片一模型二',
-    }
-  },
-  {
-    value: 'Image10',
-    label: 'Image10',
-    img: 'https://upload.cc/i1/2022/04/10/cEFXHM.png',
-    img: 'https://upload.cc/i1/2022/04/10/cEFXHM.png',
-    reimg: {
-      img1_200: 'https://upload.cc/i1/2022/04/10/nCxpuj.png',
-      img1_300: 'https://upload.cc/i1/2022/04/10/ebJ3mN.png',
-      img2_200: '圖片十模型二',
-      img2_300: '圖片一模型二',
-    }
-  },
-])
 const value1 = ref("Image1")
 
 const options2 = ref([
@@ -177,7 +66,6 @@ const options2 = ref([
   {
     value: 'img2',
     label: 'SegNet',
-    disabled: true,
   },
   {
     value: 'img3',
@@ -191,7 +79,7 @@ const a = ref("")
 const radio1 = ref("200")
 
 const img = computed(() => {
-  return options1.value[options1.value.map(x => x.value).indexOf(value1.value)].img
+  return ir.resultData[ir.resultData.map(x => x.value).indexOf(value1.value)].img
 })
 
 const resultImg = computed(() => {
@@ -202,7 +90,7 @@ const result = () => {
   fullscreenLoading.value = true
   setTimeout(() => {
     fullscreenLoading.value = false
-    a.value = options1.value[options1.value.map(x => x.value).indexOf(value1.value)].reimg[value2.value+'_'+radio1.value]
+    a.value = ir.resultData[ir.resultData.map(x => x.value).indexOf(value1.value)].reimg[value2.value+'_'+radio1.value]
   }, Math.floor(Math.random()*(1500))+1000)
 }
 
@@ -248,6 +136,7 @@ const clearphoto = () => {
 .result-but {
   width: 100px;
   height: 50px;
+  margin-top: 15px;
   font-size: 1.2em;
   position: relative;
   border-radius: 10px;

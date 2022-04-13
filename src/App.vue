@@ -6,10 +6,7 @@
           <img src="@/assets/img/logo.png" class="logo" width="150" />
         </router-link>
 
-        <!-- <div class="title">
-          <span class="sch">靜宜大學</span>
-        <span class="department">資料科學暨大數據分析與應用學系</span>
-        </div> -->
+
         <div
           class="toggle"
           @click="menutoggle = !menutoggle"
@@ -24,7 +21,7 @@
           :with-header="false"
           :open-delay="200"
           :close-delay="200"
-          :size="350"
+          :size="300"
         >
           <div class="nav-list">
             <router-link to="/home" active-class="is-active" @click="menutoggle = !menutoggle">
