@@ -33,7 +33,7 @@
           </transition>
 
           <el-dialog v-model="centerDialogVisible" title=" " width="70%" top="40px">
-            <img :src="p1img"/>
+            <img :src="p1img" @click="centerDialogVisible = false"/>
           </el-dialog>
         </div>
       </el-tab-pane>
@@ -191,6 +191,7 @@ const p1img = computed(() => {
 #pane-page1 img:nth-child(1) {
   height: 100%;
   width: 100%;
+  cursor: zoom-out;
 }
 
 #pane-page1 p {
