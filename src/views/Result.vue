@@ -29,8 +29,8 @@
           ></el-option>
         </el-select>
         <div class="radio">
-          <el-radio v-model="radio1" label="200" size="large">200</el-radio>
-          <el-radio v-model="radio1" label="300" size="large">300</el-radio>
+          <el-radio v-model="radio1" label="200" size="large" @change="clearphoto">200</el-radio>
+          <el-radio v-model="radio1" label="300" size="large" @change="clearphoto">300</el-radio>
         </div>
       </div>
 
