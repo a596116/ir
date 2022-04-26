@@ -14,6 +14,8 @@ export const useIrStore = defineStore({
           img1_300: 'https://upload.cc/i1/2022/04/13/QKR483.png',
           img2_200: 'https://upload.cc/i1/2022/04/13/WtFzAs.png',
           img2_300: 'https://upload.cc/i1/2022/04/13/MZoGQD.png',
+          img3_200: 'https://upload.cc/i1/2022/04/26/DQKuGt.png',
+          img3_300: 'https://upload.cc/i1/2022/04/26/dNwC68.png',
         }
       },
       {
@@ -25,6 +27,8 @@ export const useIrStore = defineStore({
           img1_300: 'https://upload.cc/i1/2022/04/13/d3hIop.png',
           img2_200: 'https://upload.cc/i1/2022/04/13/TKo2Rc.png',
           img2_300: 'https://upload.cc/i1/2022/04/13/rm6CUg.png',
+            img3_200: 'https://upload.cc/i1/2022/04/26/BDhxL1.png',
+            img3_300: 'https://upload.cc/i1/2022/04/26/yKmh5a.png',
         }
       },
       {
@@ -36,6 +40,8 @@ export const useIrStore = defineStore({
           img1_300: 'https://upload.cc/i1/2022/04/13/txFg8s.png',
           img2_200: 'https://upload.cc/i1/2022/04/13/zU5rp8.png',
           img2_300: 'https://upload.cc/i1/2022/04/13/BY1UpE.png',
+            img3_200: 'https://upload.cc/i1/2022/04/26/DX48GF.png',
+            img3_300: 'https://upload.cc/i1/2022/04/26/bsJpfi.png',
         }
       },
       {
@@ -47,6 +53,8 @@ export const useIrStore = defineStore({
           img1_300: 'https://upload.cc/i1/2022/04/13/tEb9G1.png',
           img2_200: 'https://upload.cc/i1/2022/04/13/dRZUeY.png',
           img2_300: 'https://upload.cc/i1/2022/04/13/aoO4Iu.png',
+            img3_200: 'https://upload.cc/i1/2022/04/26/gjXVGY.png',
+            img3_300: 'https://upload.cc/i1/2022/04/26/jl5rpM.png',
         }
       },
       {
@@ -58,6 +66,8 @@ export const useIrStore = defineStore({
           img1_300: 'https://upload.cc/i1/2022/04/13/YE1BgS.png',
           img2_200: 'https://upload.cc/i1/2022/04/13/L8OWFS.png',
           img2_300: 'https://upload.cc/i1/2022/04/13/qHzg1C.png',
+            img3_200: 'https://upload.cc/i1/2022/04/26/v7mfad.png',
+            img3_300: 'https://upload.cc/i1/2022/04/26/V3R1fg.png',
         }
       },
       {
@@ -69,6 +79,8 @@ export const useIrStore = defineStore({
           img1_300: 'https://upload.cc/i1/2022/04/13/8dJtKh.png',
           img2_200: 'https://upload.cc/i1/2022/04/13/yulW9H.png',
           img2_300: 'https://upload.cc/i1/2022/04/13/1kOPwp.png',
+            img3_200: 'https://upload.cc/i1/2022/04/26/8v7NHR.png',
+            img3_300: 'https://upload.cc/i1/2022/04/26/gMvd97.png',
         }
       },
       {
@@ -80,6 +92,8 @@ export const useIrStore = defineStore({
           img1_300: 'https://upload.cc/i1/2022/04/13/HtGc01.png',
           img2_200: 'https://upload.cc/i1/2022/04/13/eISoRC.png',
           img2_300: 'https://upload.cc/i1/2022/04/13/F7AyGd.png',
+            img3_200: 'https://upload.cc/i1/2022/04/26/f50tuz.png',
+            img3_300: 'https://upload.cc/i1/2022/04/26/5rbvAT.png',
         }
       },
       {
@@ -91,6 +105,8 @@ export const useIrStore = defineStore({
           img1_300: 'https://upload.cc/i1/2022/04/13/RFItGb.png',
           img2_200: 'https://upload.cc/i1/2022/04/13/rE0JMd.png',
           img2_300: 'https://upload.cc/i1/2022/04/13/JqCvgH.png',
+            img3_200: 'https://upload.cc/i1/2022/04/26/pMfFU7.png',
+            img3_300: 'https://upload.cc/i1/2022/04/26/64hH2d.png',
         }
       },
       {
@@ -102,6 +118,8 @@ export const useIrStore = defineStore({
           img1_300: 'https://upload.cc/i1/2022/04/13/aXKrIt.png',
           img2_200: 'https://upload.cc/i1/2022/04/13/MOeHWJ.png',
           img2_300: 'https://upload.cc/i1/2022/04/13/ZjCcNP.png',
+            img3_200: 'https://upload.cc/i1/2022/04/26/yuEDKt.png',
+            img3_300: 'https://upload.cc/i1/2022/04/26/NqtQPd.png',
         }
       },
       {
@@ -112,6 +130,8 @@ export const useIrStore = defineStore({
           img1_300: 'https://upload.cc/i1/2022/04/13/m9Lrj1.png',
           img2_200: 'https://upload.cc/i1/2022/04/13/9gjYIJ.png',
           img2_300: 'https://upload.cc/i1/2022/04/13/u8ds2D.png',
+            img3_200: 'https://upload.cc/i1/2022/04/26/QgZym4.png',
+            img3_300: 'https://upload.cc/i1/2022/04/26/glE3iS.png',
         }
       },
     ]

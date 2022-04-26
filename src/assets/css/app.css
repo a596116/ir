@@ -30,6 +30,21 @@
 
 .el-header {
   height: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+.headerBox{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.el-header .title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+  position: relative;
+  right: 20%;
 }
 
 .el-aside {
@@ -40,7 +55,6 @@
   text-align: center;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
   padding: 0;
   overflow: hidden;
 }
@@ -151,6 +165,20 @@
   .el-aside {
     display: none;
   }
+.el-header{
+  height: 130px;
+}
+  .headerBox{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .logo {
+    margin: 10px 30px 10px 70px;
+  }
+  .el-header .title {
+    font-size: 1.5rem;
+    right: 0;
+  }
 
   .toggle {
     position: relative;
@@ -244,6 +272,9 @@
 @media (max-width: 500px) {
   .logo {
     margin: 20px 0 0 0px;
+  }
+  .el-header .title {
+    font-size: 1.1rem;
   }
   .common-layout {
     height: auto;

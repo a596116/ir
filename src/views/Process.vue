@@ -13,7 +13,7 @@
                 <span>Seg</span>
               </div>
               <div class="p1button" :class="{ buttonhover: activepage1 == 'page1_1' }" @click="activepage1 = 'page1_1'">
-                <span>FCN</span>
+                <span>U-Net++</span>
               </div>
 
             </div>
@@ -26,26 +26,56 @@
               </el-popover>
             </div>
           </div>
-          <transition name="img-fade" appear mode="out-in">
-            <keep-alive exclude="detail">
-              <img :src="p1img" :key="p1img" @click="centerDialogVisible = true"/>
-            </keep-alive>
-          </transition>
+          <div class="modulImg">
+            <transition name="img-fade" appear mode="out-in">
+              <keep-alive exclude="detail">
+                <img :src="p1img" :key="p1img" @click="centerDialogVisible = true" />
+              </keep-alive>
+            </transition>
+          </div>
 
           <el-dialog v-model="centerDialogVisible" title=" " width="70%" top="40px">
-            <img :src="p1img" @click="centerDialogVisible = false"/>
+            <div class="dialogImg">
+              <img :src="p1img" @click="centerDialogVisible = false" />
+            </div>
           </el-dialog>
         </div>
       </el-tab-pane>
       <el-tab-pane label="流程" name="page2" class="tabs2">
         <br />
         <el-tabs v-model="activepage2">
-          <el-tab-pane label="原始資料" name="page2_1">利用空拍機，拍攝太陽光電模組的熱影像圖，蒐集資料</el-tab-pane>
-          <el-tab-pane label="處理資料" name="page2_2">將無人機收集的資料透過Labelme標記，再將圖片轉為灰階和縮小並且正規化</el-tab-pane>
-          <el-tab-pane label="拆分資料集" name="page2_3">將資料集的95%作為訓練集，剩餘的5%作為測試集</el-tab-pane>
-          <el-tab-pane label="訓練模型" name="page2_4">使用深度學習的方式建立(U-Net、SegNet)模型架構進行訓練</el-tab-pane>
-          <el-tab-pane label="測試" name="page2_5">使用訓練好的模型對測試集進行預測</el-tab-pane>
-          <el-tab-pane label="結果" name="page2_6">標示出太陽光電模組異常的區塊</el-tab-pane>
+          <el-tab-pane label="原始資料" name="page2_1">利用空拍機，拍攝太陽光電模組的熱影像圖，蒐集資料
+            <br>
+            <img src="https://upload.cc/i1/2022/04/22/vn8MEK.png" alt="">
+          </el-tab-pane>
+          <el-tab-pane label="處理資料" name="page2_2">將無人機收集的資料透過Labelme標記，再將圖片轉為灰階和縮小並且正規化
+            <br>
+            <img src="https://upload.cc/i1/2022/04/22/5zsCSw.png" alt="">
+          </el-tab-pane>
+          <el-tab-pane label="拆分資料集" name="page2_3">將資料集的95%作為訓練集，剩餘的5%作為測試集
+            <br>
+            <img src="https://upload.cc/i1/2022/04/22/JitA6d.png" alt="">
+          </el-tab-pane>
+
+          <el-tab-pane label="訓練模型" name="page2_4">使用深度學習的方式建立(U-Net、SegNet、U-Net++)模型架構進行訓練
+            <br>
+            <div class="carouselImg">
+              <el-carousel height="500px" :autoplay="false">
+                <el-carousel-item v-for="item,index in carousel_Img" :key="index">
+                  <img :src="item">
+                </el-carousel-item>
+              </el-carousel>
+            </div>
+          </el-tab-pane>
+
+          <el-tab-pane label="測試" name="page2_5">使用訓練好的模型對測試集進行預測
+            <br>
+            <img src="https://upload.cc/i1/2022/04/22/Hw74yv.png" alt="">
+          </el-tab-pane>
+          <el-tab-pane label="結果" name="page2_6">標示出太陽光電模組異常的區塊
+            <br>
+            <img src="https://upload.cc/i1/2022/04/22/r4EJy1.png" alt="">
+          </el-tab-pane>
         </el-tabs>
       </el-tab-pane>
     </el-tabs>
@@ -59,10 +89,20 @@ const active = ref("page1")
 const activepage1 = ref("page1_3")
 const activepage2 = ref("page2_1")
 const p1data = reactive({
-  page1_1: { content: "FCN能夠對影象進行畫素級的分類，與經典的CNN在卷積層之後使用全連線層得到固定長度的特徵向量進行分類不同，FCN可以接受任意尺寸的輸入圖像，采用反卷積層對最後一個卷積層的特征圖進行上取樣", img: "https://upload.cc/i1/2021/12/09/qGN6I1.png" },
-  page1_2: { content: "SegNet是一個由encoder和decoder組成的對稱網路。輸入一張RGB圖像後，網絡根據圖像中物體的語義信息，把圖像中的物體進行分類，最後生成一張分割圖像", img: "https://upload.cc/i1/2022/04/12/2GRpOn.png" },
+  page1_1: { content: "這個綜合U-Net長連線和短連線的架構就是UNet++。UNet++的優勢是可以抓取不同層次的特徵,將它們通過特徵疊加的方式整合，加入更淺的U-Net結構，使得融合時的特徵圖尺度差異更小。UNet++同時也引進了很多引數，佔用記憶體也變大", img: "https://upload.cc/i1/2022/04/26/2i0Plw.png" },
+  page1_2: { content: "SegNet是一個由encoder和decoder組成的對稱網路。輸入一張RGB圖像後，網絡根據圖像中物體的語義信息，把圖像中的物體進行分類，最後生成一張分割圖像", img: "https://upload.cc/i1/2022/04/26/SxqT1i.jpeg" },
   page1_3: { content: "U-Net由收縮路徑和擴展路徑兩部分組成!它的特殊之處在於結構後半部分的擴展路徑。此外，該網路沒有使用全連接層，只採用了卷積層，每個標準的卷積層後面都緊跟著一個Relu激活函數層。", img: "https://upload.cc/i1/2022/04/12/5pD8wn.png" }
 })
+
+const carousel_Img = reactive([
+  "https://upload.cc/i1/2022/04/26/qkfGBS.png",
+  "https://upload.cc/i1/2022/04/26/OnMU3g.png",
+  "https://upload.cc/i1/2022/04/26/LsBQVP.png",
+  "https://upload.cc/i1/2022/04/26/b2iWYq.png",
+  "https://upload.cc/i1/2022/04/26/7fkB8V.png",
+  "https://upload.cc/i1/2022/04/26/CrYkDP.png"
+])
+
 const centerDialogVisible = ref(false)
 
 const p1content = computed(() => {
@@ -75,6 +115,14 @@ const p1img = computed(() => {
 </script>
 
 <style>
+.carouselImg{
+  width: 70%;
+}
+#pane-page2_4{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 .process {
   width: 90vw;
 }
@@ -111,7 +159,11 @@ const p1img = computed(() => {
   width: 100%;
   height: 100vh;
   position: relative;
-  padding-top: 30px;
+}
+
+.el-tab-pane img {
+  width: 70%;
+  margin-top: 30px;
 }
 
 .el-tabs__active-bar {
@@ -147,9 +199,10 @@ const p1img = computed(() => {
 }
 
 #pane-page1 .p1button {
-  width: 80px;
+  width: auto;
   height: 40px;
   margin: 0 20px 0 0;
+  padding: 0 5px;
   border: 1px solid #fff;
   color: #fff;
   display: grid;
@@ -183,12 +236,21 @@ const p1img = computed(() => {
   margin: 0 0 20px 0;
 }
 
-#pane-page1 img:nth-child(2) {
-  height: 80%;
+.modulImg {
+  width: auto;
+  height: 100%;
+  overflow: hidden;
+}
+
+#pane-page1 .modulImg img {
   width: 100%;
+  max-width: 100%;
+  height: 100%;
+  margin-top: 0;
   cursor: zoom-in;
 }
-#pane-page1 img:nth-child(1) {
+
+.dialogImg img {
   height: 100%;
   width: 100%;
   cursor: zoom-out;
@@ -219,6 +281,7 @@ const p1img = computed(() => {
   }
 }
 
+/* Img動畫 */
 .img-fade-enter-active,
 .img-fade-leave-active {
   transition: all 0.5s;
@@ -232,9 +295,5 @@ const p1img = computed(() => {
 
 .img-fade-enter-from {
   transform: translateX(10%);
-}
-.dialog-footer img {
-  width: 100%;
-  height: 100%;
 }
 </style>

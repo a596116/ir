@@ -1,8 +1,8 @@
 <template>
   <div class="aa">
-    <span class="sch">靜宜大學</span>
-    <span class="department">資料科學暨大數據分析與應用學系</span>
-    <p class="topic">深度學習在太陽光電模組的熱影像缺陷自動識別系統</p>
+      <img src="https://www.pu.edu.tw/var/file/0/1000/msys_1000_4878238_70649.png" class="logo1">
+      <br>
+      <img src="https://upload.cc/i1/2022/04/26/USaXRT.png" class="logo2">
     <p class="name">指導老師：黃秋杰 郭珈妤</p>
     <p class="name">組員：張偉政 楊迪奇 王教勛 陳峻浩 王泊諺 張湧毅 馬浩洋</p>
     <div class="order">
@@ -11,7 +11,7 @@
       <span style="white-space: pre"> </span><span class="line2"></span>
     </div>
     <div class="summary">
-      「<span style="color:#cc0000">能源</span>」已然成為驅使人類科技文明前進的動力之一，也因為如此有不少國家因為有限的資源而引發戰爭，這也勢必會成為未來戰爭的一個導火索。再生能源不僅能夠彌補有限資源的浩劫，也能以<span style="color:#cc0000">綠色環保</span>的方式保護我們的家園， 「<span style="color:#cc0000">地球</span>」得以永續共存。
+      「<span style="color:#cc0000">能源</span>」已然成為驅使人類科技文明前進的動力之一，也因為如此有不少國家因為有限的資源而引發戰爭，這也勢必會成為未來戰爭的一個導火索。再生能源不僅能夠彌補有限資源的浩劫，也能以<span style="color:#cc0000">綠色環保</span>的方式保護我們的家園，「<span style="color:#cc0000">地球</span>」得以永續共存。
     </div>
   </div>
 </template>
@@ -23,25 +23,19 @@
   position: relative;
   width: 65vw;
   text-align: left;
-  padding-top: 7%;
+  margin-top: 4%;
 }
-.sch {
-  font-size: 4rem;
-  color: aliceblue;
-  position: relative;
-  margin: 0 20px 0 0;
-  width: 280px;
-  display: inline;
+.logo1{
+  height: 130px;
+}
+.logo2{
+  height: 100px;
+  margin-top: 30px;
 }
 .department {
   width: 400px;
   font-size: 1.8rem;
   color: rgb(255, 255, 255);
-}
-.topic {
-  font-size: 2.4rem;
-  color: #ffffff;
-  font-weight: 700;
 }
 .name {
   font-size: 1.7rem;
@@ -107,6 +101,12 @@
   }
 }
 @media (max-width: 500px) {
+  .logo1{
+    height: 100px;
+  }
+  .logo2{
+    height: 65px;
+  }
   .sch {
     font-size: 2.3rem;
     display: block;

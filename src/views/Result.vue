@@ -61,16 +61,15 @@ const value1 = ref("Image1")
 const options2 = ref([
   {
     value: 'img1',
-    label: 'U-Net',
+    label: 'U-Net'
   },
   {
     value: 'img2',
-    label: 'SegNet',
+    label: 'SegNet'
   },
   {
     value: 'img3',
-    label: 'FCN',
-    disabled: true,
+    label: 'U-Net++'
   },
 ])
 const value2 = ref("img1")
