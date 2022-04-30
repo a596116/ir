@@ -1,0 +1,240 @@
+/****************************************************************************
+****************************      容器布局     *******************************
+*****************************************************************************/
+.bg {
+  height: auto;
+  background: url("/bg.png") no-repeat;
+  background-size: 50%;
+  background-position: bottom -50px right 20%;
+}
+
+.common-layout {
+  min-height: 100vh;
+}
+
+.el-header {
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  .logo {
+    padding: 0 0 0 0px;
+    position: relative;
+    left: 40px;
+  }
+  .title {
+    font-size: 2em;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    letter-spacing: 2px;
+  }
+
+  // 小版畫面的導航欄
+  .toggle {
+    position: relative;
+    width: 45px;
+    height: 45px;
+    right: 10px;
+    background: #fff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    span {
+      position: absolute;
+      width: 30px;
+      height: 4px;
+      background: #000;
+      border-radius: 4px;
+      transition: 0.5s;
+      &:nth-child(1) {
+        transform: translateY(-15px);
+        width: 20px;
+        left: 8px;
+      }
+      &:nth-child(2) {
+        transform: translateY(15px);
+        width: 10px;
+        left: 8px;
+      }
+    }
+    &.active span {
+      &:nth-child(1) {
+        width: 30px;
+        transform: translateY(0px) rotate(45deg);
+        transition-delay: 0.125s;
+      }
+      &:nth-child(2) {
+        width: 30px;
+        transform: translateY(0px) rotate(315deg);
+        transition-delay: 0.25s;
+      }
+      &:nth-child(3) {
+        transform: translateX(60px);
+      }
+    }
+  }
+}
+
+/*****************************************************************************
+****************************      導航欄      *********************************
+*****************************************************************************/
+.el-aside {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  nav {
+    position: relative;
+    width: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+    list-style-position: inside;
+    z-index: 10;
+
+    li {
+      position: relative;
+      left: 20px;
+      font-size: 30px;
+      color: #fff;
+      cursor: pointer;
+
+      .el-icon {
+        position: absolute;
+        top: 9px;
+        left: 80px;
+        color: rgb(131, 127, 127);
+      }
+
+      span {
+        position: relative;
+        top: -2px;
+        left: 20px;
+        font-size: 20px;
+        font-weight: 100;
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+    // 點即當頁
+    .is-active {
+      li {
+        color: rgba(22, 205, 199, 1);
+      }
+      .el-icon {
+        left: -35px;
+        top: 10px;
+        color: rgba(22, 205, 199, 1);
+        transition: 0.5s ease-in-out;
+      }
+      span {
+        left: 10px;
+        opacity: 1;
+        visibility: visible;
+        transition: 0.7s ease-in-out;
+      }
+    }
+  }
+}
+
+/*****************************************************************************
+****************************      主畫面區      *********************************
+*****************************************************************************/
+.el-main {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  overflow: hidden;
+}
+
+/*****************************************************************************
+****************************      過渡動畫      *******************************
+*****************************************************************************/
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s;
+}
+.fade-leave-to,
+.fade-enter {
+  transform: translateY(6%);
+  opacity: 0.2;
+}
+.fade-enter-from {
+  transform: translateY(6%);
+}
+
+/* -----------------------------------------------------------------------
+    responsive
+------------------------------------------------------------------------- */
+@media (max-width: 1100px) {
+  .el-aside {
+    display: none;
+  }
+  .el-header {
+    height: 150px;
+    .logo {
+      width: 120px;
+    }
+    .title {
+      width: 100%;
+      order: 3;
+    }
+    .toggle {
+      opacity: 1;
+      visibility: visible;
+    }
+    .nav-list {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      a {
+        width: 150px;
+        text-align: center;
+        color: rgb(73, 71, 71);
+        line-height: 5rem;
+        font-size: 1.3rem;
+        border-radius: 30px;
+        font-weight: bolder;
+        // letter-spacing: 10px;
+      }
+      > .is-active,
+      &:focus {
+        color: rgb(255, 255, 255);
+        background: rgb(192, 208, 150);
+      }
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .bg {
+    height: auto;
+  }
+  .el-header {
+    .title {
+      font-size: 1.5em;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .common-layout {
+    height: auto;
+  }
+}

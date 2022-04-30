@@ -1,0 +1,91 @@
+* {
+  box-sizing: border-box;
+  text-decoration: none !important;
+  font-family: "DFKai-SB";
+  --el-loading-fullscreen-spinner-size: 120px !important;
+}
+
+body {
+  background: linear-gradient(
+    135deg,
+    rgb(97, 112, 150) 0%,
+    rgb(73, 94, 145) 50%,
+    rgb(50, 68, 134) 100%
+  );
+  position: relative;
+}
+
+.el-loading-spinner .el-loading-text {
+  font-size: 40px !important;
+}
+
+.swiper-pagination-bullet {
+  width: 15px !important;
+  height: 15px !important;
+  background: rgb(255, 255, 255) !important;
+  margin: 0 10px !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: rgba(22, 205, 199) !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: rgb(66, 168, 165) !important;
+}
+
+.el-drawer__body {
+  background: rgb(161, 161, 161);
+}
+
+@media (max-width: 600px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    display: none !important;
+  }
+}
+
+// 第三頁
+
+.el-tabs__nav-wrap {
+  display: flex;
+}
+
+.el-tabs__nav-scroll {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+.el-tabs__nav-scroll .is-active {
+  color: aliceblue !important;
+}
+.el-tabs__nav-wrap::after {
+  content: none !important;
+}
+
+.el-tabs__item {
+  color: rgb(129, 129, 129) !important;
+  font-size: 30px !important;
+  margin: 0 20px;
+  padding-left: 0 !important;
+}
+#pane-page2 .el-tabs__item {
+  font-size: 26px !important;
+  margin: 0 10px;
+}
+
+.el-tab-pane {
+  color: rgb(183, 186, 185);
+  font-size: 26px !important;
+}
+
+.el-tabs__active-bar {
+  background-color: rgba(255, 255, 255, 0.753) !important;
+}
+
+.el-popover.el-popper {
+  font-size: 1.5em !important;
+  letter-spacing: 3px;
+  padding: 30px !important;
+}

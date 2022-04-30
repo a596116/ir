@@ -1,67 +1,65 @@
 <template>
   <div class="process">
-    <div class="line">|</div>
+    <div class="process-line">|</div>
     <el-tabs v-model="active" style="width: 100%;">
-      <el-tab-pane label="模型" name="page1" class="tabs1">
-        <div class="page1-content">
-          <div class="page1">
-            <div class="page1_c1">
-              <div class="p1button" :class="{ buttonhover: activepage1 == 'page1_3' }" @click="activepage1 = 'page1_3'">
-                <span>U-Net</span>
-              </div>
-              <div class="p1button" :class="{ buttonhover: activepage1 == 'page1_2' }" @click="activepage1 = 'page1_2'">
-                <span>Seg</span>
-              </div>
-              <div class="p1button" :class="{ buttonhover: activepage1 == 'page1_1' }" @click="activepage1 = 'page1_1'">
-                <span>U-Net++</span>
-              </div>
-
+      <el-tab-pane label="模型" name="page1">
+        <div class="page1_nav">
+          <div class="page1_item">
+            <div class="page1_button" :class="{ buttonhover: activepage1 == 'page1_1' }"
+              @click="activepage1 = 'page1_1'">
+              <span>U-Net</span>
             </div>
-
-            <div class="page1_c2">
-              <el-popover placement="bottom" title :width="400" trigger="click" :content="p1content">
-                <template #reference>
-                  <el-button>介紹</el-button>
-                </template>
-              </el-popover>
+            <div class="page1_button" :class="{ buttonhover: activepage1 == 'page1_2' }"
+              @click="activepage1 = 'page1_2'">
+              <span>Seg</span>
+            </div>
+            <div class="page1_button" :class="{ buttonhover: activepage1 == 'page1_3' }"
+              @click="activepage1 = 'page1_3'">
+              <span>U-Net++</span>
             </div>
           </div>
-          <div class="modulImg">
-            <transition name="img-fade" appear mode="out-in">
-              <keep-alive exclude="detail">
-                <img :src="p1img" :key="p1img" @click="centerDialogVisible = true" />
-              </keep-alive>
-            </transition>
-          </div>
-
-          <el-dialog v-model="centerDialogVisible" title=" " width="70%" top="40px">
-            <div class="dialogImg">
-              <img :src="p1img" @click="centerDialogVisible = false" />
-            </div>
-          </el-dialog>
+          <el-popover placement="bottom" title :width="400" trigger="click" :content="p1content">
+            <template #reference>
+              <el-button>介紹</el-button>
+            </template>
+          </el-popover>
         </div>
+        <div class="modulImg">
+          <transition name="img-fade" appear mode="out-in">
+            <keep-alive exclude="detail">
+              <img :src="p1img" :key="p1img" />
+            </keep-alive>
+          </transition>
+          <div class="mask" @click="centerDialogVisible = true">
+            點擊放大
+          </div>
+        </div>
+
+        <el-dialog v-model="centerDialogVisible" title=" " width="90%" top="40px">
+          <div class="dialogImg">
+            <img :src="p1img" @click="centerDialogVisible = false" />
+          </div>
+        </el-dialog>
       </el-tab-pane>
-      <el-tab-pane label="流程" name="page2" class="tabs2">
+
+
+      <el-tab-pane label="流程" name="page2">
         <br />
         <el-tabs v-model="activepage2">
           <el-tab-pane label="原始資料" name="page2_1">利用空拍機，拍攝太陽光電模組的熱影像圖，蒐集資料
-            <br>
             <img src="https://upload.cc/i1/2022/04/22/vn8MEK.png" alt="">
           </el-tab-pane>
           <el-tab-pane label="處理資料" name="page2_2">將無人機收集的資料透過Labelme標記，再將圖片轉為灰階和縮小並且正規化
-            <br>
             <img src="https://upload.cc/i1/2022/04/22/5zsCSw.png" alt="">
           </el-tab-pane>
           <el-tab-pane label="拆分資料集" name="page2_3">將資料集的95%作為訓練集，剩餘的5%作為測試集
-            <br>
             <img src="https://upload.cc/i1/2022/04/22/JitA6d.png" alt="">
           </el-tab-pane>
 
           <el-tab-pane label="訓練模型" name="page2_4">使用深度學習的方式建立(U-Net、SegNet、U-Net++)模型架構進行訓練
-            <br>
             <div class="carouselImg">
-              <el-carousel height="500px" :autoplay="false">
-                <el-carousel-item v-for="item,index in carousel_Img" :key="index">
+              <el-carousel :autoplay="false" indicator-position="outside">
+                <el-carousel-item v-for="item, index in carousel_Img" :key="index">
                   <img :src="item">
                 </el-carousel-item>
               </el-carousel>
@@ -69,7 +67,6 @@
           </el-tab-pane>
 
           <el-tab-pane label="測試" name="page2_5">使用訓練好的模型對測試集進行預測
-            <br>
             <img src="https://upload.cc/i1/2022/04/22/Hw74yv.png" alt="">
           </el-tab-pane>
           <el-tab-pane label="結果" name="page2_6">標示出太陽光電模組異常的區塊
@@ -83,15 +80,15 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed } from 'vue';
+import { ref, reactive, computed } from 'vue'
 
 const active = ref("page1")
-const activepage1 = ref("page1_3")
+const activepage1 = ref("page1_1")
 const activepage2 = ref("page2_1")
 const p1data = reactive({
-  page1_1: { content: "這個綜合U-Net長連線和短連線的架構就是UNet++。UNet++的優勢是可以抓取不同層次的特徵,將它們通過特徵疊加的方式整合，加入更淺的U-Net結構，使得融合時的特徵圖尺度差異更小。UNet++同時也引進了很多引數，佔用記憶體也變大", img: "https://upload.cc/i1/2022/04/26/2i0Plw.png" },
+  page1_1: { content: "U-Net由收縮路徑和擴展路徑兩部分組成!它的特殊之處在於結構後半部分的擴展路徑。此外，該網路沒有使用全連接層，只採用了卷積層，每個標準的卷積層後面都緊跟著一個Relu激活函數層。", img: "https://upload.cc/i1/2022/04/12/5pD8wn.png" },
   page1_2: { content: "SegNet是一個由encoder和decoder組成的對稱網路。輸入一張RGB圖像後，網絡根據圖像中物體的語義信息，把圖像中的物體進行分類，最後生成一張分割圖像", img: "https://upload.cc/i1/2022/04/26/SxqT1i.jpeg" },
-  page1_3: { content: "U-Net由收縮路徑和擴展路徑兩部分組成!它的特殊之處在於結構後半部分的擴展路徑。此外，該網路沒有使用全連接層，只採用了卷積層，每個標準的卷積層後面都緊跟著一個Relu激活函數層。", img: "https://upload.cc/i1/2022/04/12/5pD8wn.png" }
+  page1_3: { content: "這個綜合U-Net長連線和短連線的架構就是UNet++。UNet++的優勢是可以抓取不同層次的特徵,將它們通過特徵疊加的方式整合，加入更淺的U-Net結構，使得融合時的特徵圖尺度差異更小。UNet++同時也引進了很多引數，佔用記憶體也變大", img: "https://upload.cc/i1/2022/04/26/2i0Plw.png" },
 })
 
 const carousel_Img = reactive([
@@ -102,7 +99,6 @@ const carousel_Img = reactive([
   "https://upload.cc/i1/2022/04/26/7fkB8V.png",
   "https://upload.cc/i1/2022/04/26/CrYkDP.png"
 ])
-
 const centerDialogVisible = ref(false)
 
 const p1content = computed(() => {
@@ -114,170 +110,142 @@ const p1img = computed(() => {
 
 </script>
 
-<style>
-.carouselImg{
-  width: 70%;
-}
-#pane-page2_4{
+<style scoped lang="scss">
+.process {
+  width: 90%;
+  height: 100%;
+  position: relative;
   display: flex;
   align-items: center;
-  flex-direction: column;
-}
-.process {
-  width: 90vw;
-}
+  padding-top: 20px;
 
-.line {
-  font-size: 40px;
-  color: aliceblue;
-  position: relative;
-  top: 45px;
-}
-
-.el-tabs__nav-wrap::after {
-  background-color: rgba(0, 0, 0, 0) !important;
-}
-
-.el-tabs__nav-scroll {
-  text-align: center;
-  display: flex;
-  justify-content: center;
-}
-
-.el-tabs__item {
-  color: rgb(129, 129, 129) !important;
-  font-size: 30px !important;
-  margin: 0 20px;
-}
-
-.el-tab-pane {
-  color: rgb(131, 197, 161);
-  font-size: 30px !important;
-}
-
-.el-tabs__content {
-  width: 100%;
-  height: 100vh;
-  position: relative;
-}
-
-.el-tab-pane img {
-  width: 70%;
-  margin-top: 30px;
-}
-
-.el-tabs__active-bar {
-  background-color: rgba(255, 255, 255, 0.753) !important;
-}
-
-.el-tabs__nav-scroll .is-active {
-  color: aliceblue !important;
-}
-
-.el-tabs__item {
-  padding-left: 0 !important;
-}
-
-#pane-page1 {
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-
-.page1 {
-  position: relative;
-  width: 100%;
-  display: inline-flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.page1_c1 {
-  position: relative;
-  display: inline-flex;
-  flex-direction: row;
-}
-
-#pane-page1 .p1button {
-  width: auto;
-  height: 40px;
-  margin: 0 20px 0 0;
-  padding: 0 5px;
-  border: 1px solid #fff;
-  color: #fff;
-  display: grid;
-  place-items: center;
-  font-size: 0.7em;
-  cursor: pointer;
-  transition: all 0.5s ease 0s;
-}
-
-#pane-page1 .p1button:hover,
-#pane-page1 .buttonhover {
-  background: rgba(255, 255, 255, 0.582);
-  color: rgb(66, 62, 62);
-}
-
-#pane-page1 .p1button:hover span,
-#pane-page1 .buttonhover span {
-  font-weight: bold;
-}
-
-.page1-content {
-  position: relative;
-  width: 80%;
-  height: 70%;
-  display: inline-flex;
-  flex-direction: column;
-}
-
-.page1-content .el-button {
-  width: 80px;
-  margin: 0 0 20px 0;
-}
-
-.modulImg {
-  width: auto;
-  height: 100%;
-  overflow: hidden;
-}
-
-#pane-page1 .modulImg img {
-  width: 100%;
-  max-width: 100%;
-  height: 100%;
-  margin-top: 0;
-  cursor: zoom-in;
-}
-
-.dialogImg img {
-  height: 100%;
-  width: 100%;
-  cursor: zoom-out;
-}
-
-#pane-page1 p {
-  padding: 20px;
-  transition: all 0.5s ease-in-out;
-}
-
-.el-popover.el-popper {
-  font-size: 1.5em !important;
-  padding: 30px !important;
-}
-
-@media (max-width: 600px) {
-  #pane-page1 .p1button {
-    margin: 0 10px 0 0;
+  .process-line {
+    font-size: 40px;
+    color: aliceblue;
+    position: absolute;
+    top: 15px;
+    left: 50%;
   }
 
-  .page1-content {
+  .el-tabs {
+    height: 100%;
+
+  }
+
+  #pane-page1 {
     width: 100%;
-    overflow: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .page1_nav {
+      width: 100%;
+      height: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .page1_item {
+        display: flex;
+
+        .page1_button {
+          width: auto;
+          height: 40px;
+          margin: 0 20px 0 0;
+          padding: 0 5px;
+          border: 1px solid #fff;
+          color: #fff;
+          display: grid;
+          place-items: center;
+          font-size: 0.7em;
+          font-weight: bold;
+          cursor: pointer;
+          transition: all 0.5s ease 0s;
+
+          &:hover,
+          &.buttonhover {
+            background: rgba(255, 255, 255, 0.582);
+            color: rgb(66, 62, 62);
+
+          }
+        }
+      }
+    }
+
+    .modulImg {
+      padding: 30px 0;
+      position: relative;
+
+      img {
+        width: 100%;
+        height: 60vh;
+
+      }
+
+      .mask {
+        position: absolute;
+        top: 30px;
+        left: 0;
+        width: 100%;
+        height: calc(100% - 68px);
+        background: rgba(101, 101, 101, 0.4);
+        color: #ffffff;
+        font-size: 1.5em;
+        display: grid;
+        place-content: center;
+        cursor: zoom-in;
+        opacity: 0;
+        transition: all 0.5s ease-in-out;
+      }
+
+      &:hover {
+        .mask {
+          opacity: 1;
+        }
+      }
+    }
+
+    .dialogImg img {
+      height: 100%;
+      width: 100%;
+      cursor: zoom-out;
+    }
   }
 
-  #pane-page1 img {
-    width: 600px;
+
+}
+
+
+#pane-page2 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .el-tab-pane {
+    padding-top: 30px;
+
+    img {
+      width: 100%;
+      margin-top: 20px;
+    }
+  }
+
+
+  #pane-page2_4 {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .carouselImg {
+      width: 90%;
+      height: 100%;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
 }
 
