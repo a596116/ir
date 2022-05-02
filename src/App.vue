@@ -106,6 +106,6 @@ const menutoggle = ref(false)
 <style scoped lang="scss">
 @import "@/assets/css/layout.scss";
 </style>
-<style>
+<style lang="scss">
 @import "@/assets/base.scss";
 </style>

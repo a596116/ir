@@ -17,9 +17,6 @@
   </div>
 </template>
 
-<script setup>
-// console.log(import.meta.globEager("./*.vue"))
-</script>
 
 <style scoped lang="scss">
 .home {

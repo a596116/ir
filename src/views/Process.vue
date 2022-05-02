@@ -30,14 +30,14 @@
               <img :src="p1img" :key="p1img" />
             </keep-alive>
           </transition>
-          <div class="mask" @click="centerDialogVisible = true">
+          <div class="mask" @click="imgDialog = true">
             點擊放大
           </div>
         </div>
 
-        <el-dialog v-model="centerDialogVisible" title=" " width="90%" top="40px">
+        <el-dialog v-model="imgDialog" title=" " width="90%" top="40px">
           <div class="dialogImg">
-            <img :src="p1img" @click="centerDialogVisible = false" />
+            <img :src="p1img" @click="imgDialog = false" />
           </div>
         </el-dialog>
       </el-tab-pane>
@@ -86,9 +86,18 @@ const active = ref("page1")
 const activepage1 = ref("page1_1")
 const activepage2 = ref("page2_1")
 const p1data = reactive({
-  page1_1: { content: "U-Net由收縮路徑和擴展路徑兩部分組成!它的特殊之處在於結構後半部分的擴展路徑。此外，該網路沒有使用全連接層，只採用了卷積層，每個標準的卷積層後面都緊跟著一個Relu激活函數層。", img: "https://upload.cc/i1/2022/04/12/5pD8wn.png" },
-  page1_2: { content: "SegNet是一個由encoder和decoder組成的對稱網路。輸入一張RGB圖像後，網絡根據圖像中物體的語義信息，把圖像中的物體進行分類，最後生成一張分割圖像", img: "https://upload.cc/i1/2022/04/26/SxqT1i.jpeg" },
-  page1_3: { content: "這個綜合U-Net長連線和短連線的架構就是UNet++。UNet++的優勢是可以抓取不同層次的特徵,將它們通過特徵疊加的方式整合，加入更淺的U-Net結構，使得融合時的特徵圖尺度差異更小。UNet++同時也引進了很多引數，佔用記憶體也變大", img: "https://upload.cc/i1/2022/04/26/2i0Plw.png" },
+  page1_1: {
+    content: "U-Net由收縮路徑和擴展路徑兩部分組成!它的特殊之處在於結構後半部分的擴展路徑。此外，該網路沒有使用全連接層，只採用了卷積層，每個標準的卷積層後面都緊跟著一個Relu激活函數層。",
+    img: "https://upload.cc/i1/2022/04/12/5pD8wn.png"
+  },
+  page1_2: {
+    content: "SegNet是一個由encoder和decoder組成的對稱網路。輸入一張RGB圖像後，網絡根據圖像中物體的語義信息，把圖像中的物體進行分類，最後生成一張分割圖像",
+    img: "https://upload.cc/i1/2022/04/26/SxqT1i.jpeg"
+  },
+  page1_3: {
+    content: "這個綜合U-Net長連線和短連線的架構就是UNet++。UNet++的優勢是可以抓取不同層次的特徵,將它們通過特徵疊加的方式整合，加入更淺的U-Net結構，使得融合時的特徵圖尺度差異更小。UNet++同時也引進了很多引數，佔用記憶體也變大",
+    img: "https://upload.cc/i1/2022/04/26/2i0Plw.png"
+  },
 })
 
 const carousel_Img = reactive([
@@ -99,7 +108,7 @@ const carousel_Img = reactive([
   "https://upload.cc/i1/2022/04/26/7fkB8V.png",
   "https://upload.cc/i1/2022/04/26/CrYkDP.png"
 ])
-const centerDialogVisible = ref(false)
+const imgDialog = ref(false)
 
 const p1content = computed(() => {
   return p1data[activepage1.value].content
