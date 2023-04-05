@@ -1,7 +1,7 @@
 <template>
   <div class="process">
     <!-- <div class="process-line">|</div> -->
-    <el-tabs v-model="active" style="width: 100%">
+    <el-tabs v-model="active" style="width: 100%; height: 100%">
       <el-tab-pane label="模型" name="page1">
         <div class="page1_nav">
           <div class="page1_item">
@@ -74,7 +74,11 @@
           <el-tab-pane label="訓練模型" name="page2_4"
             >使用深度學習的方式建立(U-Net、SegNet、U-Net++)模型架構進行訓練
             <div class="carouselImg">
-              <el-carousel :autoplay="false" indicator-position="outside">
+              <el-carousel
+                :autoplay="false"
+                indicator-position="outside"
+                height="400px"
+              >
                 <el-carousel-item
                   v-for="(item, index) in carousel_Img"
                   :key="index"
@@ -264,7 +268,7 @@ const p1img = computed(() => {
 
     .carouselImg {
       width: 90%;
-      height: 100%;
+      height: 200%;
 
       img {
         width: 100%;
